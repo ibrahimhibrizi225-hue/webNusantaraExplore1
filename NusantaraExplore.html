@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NusantaraExplore - Jelajahi Keindahan & Warisan Budaya Indonesia</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1e293b;
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f766e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: #d97706;
+        }
+
+        .nav-menu ul {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-menu a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #0f766e;
+        }
+
+        .btn-primary {
+            background-color: #0f766e;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #115e59;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 22px;
+            color: #1e293b;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-color: #0f3d3e;
+            display: flex;
+            align-items: center;
+            padding: 120px 24px 80px;
+            color: #ffffff;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(15, 118, 110, 0.68));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 820px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .hero-content p {
+            font-size: 17px;
+            color: #e2e8f0;
+            max-width: 660px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .btn-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #d97706;
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-main:hover {
+            background-color: #b45309;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            border: 1.5px solid #ffffff;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .btn-outline:hover {
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            margin: 0;
+            color: #cbd5e1;
+        }
+
+        /* Section Header Umum */
+        section {
+            padding: 84px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 52px;
+        }
+
+        .sub-title {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #0f766e;
+            background-color: #ccfbf1;
+            padding: 5px 14px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 34px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            font-size: 15px;
+            color: #64748b;
+        }
+
+        /* Tentang Section */
+        .about {
+            background-color: #f8fafc;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .about-card {
+            background-color: #ffffff;
+            padding: 32px 28px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background-color: #ccfbf1;
+            color: #0f766e;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .about-card h3 {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+        .about-card p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Destinasi Unggulan */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .dest-card {
+            background-color: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+        }
+
+        .dest-img {
+            position: relative;
+            height: 210px;
+            background-color: #0f3d3e;
+            overflow: hidden;
+        }
+
+        .dest-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dest-img .tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background-color: rgba(15, 23, 42, 0.78);
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dest-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .rating {
+            font-size: 13px;
+            font-weight: 600;
+            color: #d97706;
+            margin-bottom: 8px;
+        }
+
+        .dest-body h3 {
+            font-size: 19px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .dest-body p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f766e;
+        }
+
+        .read-more:hover {
+            color: #d97706;
+        }
+
+        /* Budaya & Sejarah Section */
+        .culture-section {
+            background-color: #0f3d3e;
+            color: #ffffff;
+        }
+
+        .culture-section .sub-title {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #fbbf24;
+        }
+
+        .culture-section .section-header h2 {
+            color: #ffffff;
+        }
+
+        .culture-section .section-header p {
+            color: #cbd5e1;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .culture-item {
+            background-color: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 30px 26px;
+            border-radius: 14px;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background-color: #d97706;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+        }
+
+        .culture-item h3 {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .culture-item p {
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+
+        /* Galeri Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-card {
+            position: relative;
+            height: 250px;
+            border-radius: 14px;
+            overflow: hidden;
+            background-color: #0f3d3e;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 14px 16px;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Kontak Section */
+        .contact-section {
+            background-color: #f8fafc;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 44px;
+        }
+
+        .contact-box {
+            background-color: #ffffff;
+            padding: 28px 24px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .contact-icon {
+            width: 54px;
+            height: 54px;
+            background-color: #ccfbf1;
+            color: #0f766e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin: 0 auto 16px;
+        }
+
+        .contact-box h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .highlight-number,
+        .highlight-text {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0f766e;
+            margin-bottom: 6px;
+        }
+
+        .contact-desc {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .contact-form {
+            max-width: 720px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #1e293b;
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #0f766e;
+        }
+
+        .contact-form button {
+            align-self: flex-start;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0f172a;
+            color: #cbd5e1;
+            padding: 64px 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 36px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .footer .logo {
+            color: #ffffff;
+            margin-bottom: 14px;
+        }
+
+        .footer-about {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: #1e293b;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        .social-icons a:hover {
+            background-color: #0f766e;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            font-size: 14px;
+            color: #94a3b8;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul a:hover {
+            color: #ffffff;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        /* Responsif Tablet & HP */
+        @media (max-width: 992px) {
+            .nav-menu,
+            .nav-cta {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .about-grid,
+            .destinations-grid,
+            .culture-grid,
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .about-grid,
+            .destinations-grid,
+            .culture-grid,
+            .gallery-grid,
+            .contact-grid,
+            .footer-grid,
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-compass"></i> Nusantara<span>Explore</span>
+            </a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#beranda" class="active">Beranda</a></li>
+                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#destinasi">Destinasi</a></li>
+                    <li><a href="#budaya">Budaya & Sejarah</a></li>
+                    <li><a href="#galeri">Galeri</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta">
+                <a href="#kontak" class="btn-primary">Hubungi Kami</a>
+            </div>
+            <div class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge"><i class="fa-solid fa-earth-asia"></i> Keajaiban Nusantara</span>
+            <h1>Jelajahi Pesona Alam & Kekayaan Budaya Indonesia</h1>
+            <p>Temukan keindahan destinasi wisata tersembunyi, warisan sejarah luhur, tradisi leluhur, serta keragaman budaya dari Sabang sampai Merauke dalam satu platform terpadu.</p>
+            <div class="hero-buttons">
+                <a href="#destinasi" class="btn-main">Jelajahi Destinasi <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#tentang" class="btn-outline">Pelajari Selengkapnya</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>38+</h3>
+                    <p>Provinsi</p>
+                </div>
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Destinasi Wisata</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1.000+</h3>
+                    <p>Warisan Budaya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Section -->
+    <section id="tentang" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-title">TENTANG KAMI</span>
+                <h2>Mengenal Lebih Dekat Kekayaan Nusantara</h2>
+                <p>NusantaraExplore hadir sebagai gerbang informasi terpadu untuk memperkenalkan pesona alam, sejarah kerajaan masa lalu, hingga kearifan lokal yang terjaga turun-temurun.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="card-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+                    <h3>Keindahan Alam Tropis</h3>
+                    <p>Dari puncak pegunungan vulkanik yang megah hingga keindahan bawah laut gugusan pulau terindah di dunia yang memukau mata wisatawan.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon"><i class="fa-solid fa-landmark-dome"></i></div>
+                    <h3>Sejarah & Candi Kuno</h3>
+                    <p>Menelusuri jejak peradaban Hindu-Buddha dan kerajaan besar Nusantara seperti Majapahit, Mataram, dan Sriwijaya melalui artefak bersejarah.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon"><i class="fa-solid fa-masks-theater"></i></div>
+                    <h3>Seni & Tradisi Luhur</h3>
+                    <p>Mulai dari pertunjukan wayang kulit klasik, seni tari tradisional daerah, hingga ragam motif batik bernilai filosofis tinggi yang diakui dunia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinasi Unggulan -->
+    <section id="destinasi" class="destinations">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-title">DESTINASI PILIHAN</span>
+                <h2>12 Destinasi Wisata Terfavorit di Indonesia</h2>
+                <p>Rekomendasi tempat wisata menakjubkan dari berbagai wilayah di Indonesia yang dilengkapi foto dan tag lokasi wilayah.</p>
+            </div>
+            <div class="destinations-grid">
+
+                <!-- 1. Jawa Tengah -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=900&q=80" alt="Jawa Tengah - Candi Borobudur" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> Jawa Tengah</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (1.2k Ulasan)</div>
+                        <h3>Candi Borobudur</h3>
+                        <p>Mahakarya arsitektur Buddha terbesar di dunia yang dibangun pada abad ke-8 oleh Dinasti Syailendra, menyimpan relief batu penuh filosofi luhur.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 2. Papua Barat -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=900&q=80" alt="Papua Barat - Raja Ampat" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> Papua Barat</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 5.0 (850 Ulasan)</div>
+                        <h3>Kepulauan Raja Ampat</h3>
+                        <p>Surga tersembunyi bagi penyelam dunia. Gugusan pulau karst ini memiliki keanekaragaman hayati laut paling kaya di bumi dengan air jernih berkilau.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 3. Bali -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=80" alt="Bali - Uluwatu" onerror="this.src='https://images.unsplash.com/photo-1555400038-63f5ba51797a?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> Bali</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.8 (3.4k Ulasan)</div>
+                        <h3>Pura Uluwatu Bali</h3>
+                        <p>Pura sakral di atas tebing curam menghadap Samudra Hindia, terkenal dengan pemandangan matahari terbenam dan tari Kecak yang magis.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 4. Jawa Timur -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=900&q=80" alt="Jawa Timur - Bromo" onerror="this.src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> Jawa Timur</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (2.1k Ulasan)</div>
+                        <h3>Gunung Bromo</h3>
+                        <p>Destinasi vulkanik ikonik yang menawarkan panorama matahari terbit spektakuler dari Penanjakan dengan latar lautan pasir yang membentang luas.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 5. NTT -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=80" alt="NTT - Taman Nasional Komodo" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> NTT</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (1.5k Ulasan)</div>
+                        <h3>Taman Nasional Komodo</h3>
+                        <p>Habitat asli kadal purba terbesar di dunia, menawarkan pemandangan bukit sabana eksotis serta pesona pantai pasir merah muda.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 6. Sumatra Utara -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Sumatra Utara - Danau Toba" onerror="this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> Sumatra Utara</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.7 (1.8k Ulasan)</div>
+                        <h3>Danau Toba & Samosir</h3>
+                        <p>Danau vulkanik terbesar di Asia Tenggara yang terbentuk dari letusan gunung purba, kaya akan kebudayaan suku Batak yang hangat dan memikat.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 7. NTB -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="NTB - Gili Trawangan" onerror="this.src='https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> NTB</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.8 (1.6k Ulasan)</div>
+                        <h3>Gili Trawangan Lombok</h3>
+                        <p>Pulau kecil eksotis bebas polusi kendaraan bermotor, terkenal dengan pantai pasir putih jernih, penyu laut, serta keindahan sunset.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 8. Jawa Barat -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Jawa Barat - Kawah Putih" onerror="this.src='https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> Jawa Barat</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.6 (1.1k Ulasan)</div>
+                        <h3>Kawah Putih Ciwidey</h3>
+                        <p>Danau kawah vulkanik unik dengan air berwarna hijau kekuningan yang dikelilingi tebing kabut kapur berciri khas suasana magis.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 9. Sulawesi Utara -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Sulawesi Utara - Bunaken" onerror="this.src='https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> Sulawesi Utara</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (920 Ulasan)</div>
+                        <h3>Taman Laut Bunaken</h3>
+                        <p>Destinasi penyelaman taraf internasional dengan dinding terumbu karang vertikal raksasa serta ratusan spesies ikan warna-warni.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 10. DI Yogyakarta -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1555400038-63f5ba51797a?auto=format&fit=crop&w=900&q=80" alt="DI Yogyakarta - Keraton" onerror="this.src='https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> DI Yogyakarta</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.8 (3.1k Ulasan)</div>
+                        <h3>Keraton & Malioboro</h3>
+                        <p>Pusat kebudayaan Jawa yang tetap lestari, menawarkan perpaduan sejarah kesultanan, seni pertunjukan tradisional, dan wisata belanja.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 11. Sulawesi Selatan -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80" alt="Sulawesi Selatan - Tana Toraja" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> Sulawesi Selatan</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (780 Ulasan)</div>
+                        <h3>Tana Toraja</h3>
+                        <p>Kawasan pegunungan indah yang menyimpan kebudayaan unik, termasuk rumah adat Tongkonan serta upacara pemakaman Rambu Solo.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 12. Maluku -->
+                <div class="dest-card">
+                    <div class="dest-img">
+                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=900&q=80" alt="Maluku - Kepulauan Banda" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80'">
+                        <span class="tag"><i class="fa-solid fa-location-dot"></i> Maluku</span>
+                    </div>
+                    <div class="dest-body">
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.9 (640 Ulasan)</div>
+                        <h3>Kepulauan Banda</h3>
+                        <p>Gugusan pulau bersejarah rempah-rempah yang dikelilingi laut jernih, benteng kolonial tua, dan keindahan bahari yang menawan.</p>
+                        <a href="#kontak" class="read-more">Pesan Tur <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Budaya & Sejarah Section -->
+    <section id="budaya" class="culture-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-title">BUDAYA & SEJARAH</span>
+                <h2>Jejak Peradaban & Warisan Leluhur</h2>
+                <p>Mengenal perjalanan sejarah panjang dan kekayaan tradisi yang membentuk identitas bangsa Indonesia.</p>
+            </div>
+            <div class="culture-grid">
+                <div class="culture-item">
+                    <span class="year-badge">Abad ke-7 – 13</span>
+                    <h3>Kerajaan Sriwijaya</h3>
+                    <p>Pusat perdagangan maritim dan pembelajaran agama Buddha di Sumatra yang menghubungkan jalur pelayaran Nusantara dengan dunia luar.</p>
+                </div>
+                <div class="culture-item">
+                    <span class="year-badge">Abad ke-13 – 16</span>
+                    <h3>Kerajaan Majapahit</h3>
+                    <p>Kemaharajaan berpusat di Jawa Timur yang menyatukan berbagai wilayah Nusantara dan meninggalkan warisan sastra, arsitektur, serta nilai persatuan.</p>
+                </div>
+                <div class="culture-item">
+                    <span class="year-badge">Warisan Takbenda</span>
+                    <h3>Batik, Wayang & Ragam Adat</h3>
+                    <p>Tradisi seni rupa, pertunjukan, dan upacara adat di berbagai daerah yang terus dirawat lintas generasi sebagai bagian dari kekayaan budaya nasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Section -->
+    <section id="galeri">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-title">GALERI NUSANTARA</span>
+                <h2>Potret Alam & Budaya Indonesia</h2>
+                <p>Cuplikan visual keindahan lanskap alam dan warisan budaya dari berbagai penjuru tanah air.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=80" alt="Gunung Bromo" onerror="this.src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'">
+                    <div class="gallery-caption">Gunung Bromo, Jawa Timur</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80" alt="Candi Borobudur" onerror="this.src='https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80'">
+                    <div class="gallery-caption">Candi Borobudur, Jawa Tengah</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=800&q=80" alt="Raja Ampat" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'">
+                    <div class="gallery-caption">Raja Ampat, Papua Barat</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Tana Toraja" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'">
+                    <div class="gallery-caption">Tana Toraja, Sulawesi Selatan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak Section -->
+    <section id="kontak" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="sub-title">HUBUNGI KAMI</span>
+                <h2>Rencanakan Perjalanan & Informasi Wisata</h2>
+                <p>Kirimkan pertanyaan, rekomendasi destinasi, atau rencana perjalananmu melalui informasi kontak di bawah ini.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-box">
+                    <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <h3>Lokasi</h3>
+                    <p class="highlight-text">Malang, Jawa Timur</p>
+                    <p class="contact-desc">Indonesia</p>
+                </div>
+                <div class="contact-box">
+                    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <p class="highlight-text">halo@nusantaraexplore.id</p>
+                    <p class="contact-desc">Balasan informasi & kerja sama</p>
+                </div>
+                <div class="contact-box">
+                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                    <h3>Telepon</h3>
+                    <p class="highlight-number">+62 812-3456-7890</p>
+                    <p class="contact-desc">Senin – Sabtu, 08.00 – 17.00 WIB</p>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Pesan Anda telah terkirim.'); this.reset();">
+                <div class="form-row">
+                    <input type="text" placeholder="Nama lengkap" required>
+                    <input type="email" placeholder="Alamat email" required>
+                </div>
+                <input type="text" placeholder="Subjek / Destinasi yang diminati">
+                <textarea rows="4" placeholder="Tulis pesan atau pertanyaanmu di sini..." required></textarea>
+                <button type="submit" class="btn-main">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo">
+                        <i class="fa-solid fa-compass"></i> Nusantara<span>Explore</span>
+                    </a>
+                    <p class="footer-about">Platform eksplorasi wisata, sejarah, dan budaya Indonesia dari Sabang sampai Merauke.</p>
+                    <div class="social-icons">
+                        <a href="#beranda" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#beranda" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#beranda" aria-label="Globe"><i class="fa-solid fa-globe"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#tentang">Tentang</a></li>
+                        <li><a href="#destinasi">Destinasi</a></li>
+                        <li><a href="#budaya">Budaya & Sejarah</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Eksplorasi</h4>
+                    <ul>
+                        <li><a href="#destinasi">Destinasi Unggulan</a></li>
+                        <li><a href="#galeri">Galeri Foto</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Kontak</h4>
+                    <p><i class="fa-solid fa-location-dot"></i> Malang, Jawa Timur</p>
+                    <p><i class="fa-solid fa-envelope"></i> halo@nusantaraexplore.id</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NusantaraExplore. Seluruh hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
